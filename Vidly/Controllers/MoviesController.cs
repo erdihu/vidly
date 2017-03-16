@@ -13,7 +13,7 @@ namespace Vidly.Controllers
     {
         private ApplicationDbContext _context;
         private readonly List<Movie> _movies;
-        private readonly MovieViewModel _viewModel;
+        //private readonly MovieViewModel _viewModel;
         public MoviesController()
         {
             _context = new ApplicationDbContext();
@@ -21,10 +21,10 @@ namespace Vidly.Controllers
             _movies = _context.Movies
                 .Include(m => m.Genre).ToList();
 
-            _viewModel = new MovieViewModel
-            {
-                Movies = _movies
-            };
+            //_viewModel = new MovieViewModel
+            //{
+            //    Movies = _movies
+            //};
         }
 
         protected override void Dispose(bool disposing)
@@ -34,7 +34,10 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-            return View(_viewModel);
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
+
+            return View("ReadOnlyList");
         }
 
 
@@ -74,6 +77,7 @@ namespace Vidly.Controllers
             return Content(year + "/" + month);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var viewModel = new MovieFormViewModel
