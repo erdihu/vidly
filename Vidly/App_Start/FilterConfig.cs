@@ -12,6 +12,9 @@ namespace Vidly
             //Add authorization to global site. 
             //Can be overridden by adding [AllowAnonymous] attribute
             filters.Add(new AuthorizeAttribute());
+
+            //Force HTTPS
+            filters.Add(new RequireHttpsAttribute());
         }
     }
 }
