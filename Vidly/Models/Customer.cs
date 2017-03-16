@@ -24,6 +24,11 @@ namespace Vidly.Models
 
         [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Phone { get; set; }
+
     }
 
 
