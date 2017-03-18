@@ -16,17 +16,7 @@
             <th>Delete</th>
         </tr>
     </thead>
-    <tbody>
-
-        @*@foreach (var movie in Model.Movies)
-            {
-            <tr>
-                <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null)</td>
-                <td>@movie.Genre.Name</td>
-            </tr>
-        }*@
-
-    </tbody>
+    <tbody></tbody>
 </table>
 
 @section scripts 

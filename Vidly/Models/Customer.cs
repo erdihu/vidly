@@ -28,7 +28,6 @@ namespace Vidly.Models
         [Required]
         [StringLength(50)]
         public string Phone { get; set; }
-
     }
 
 
